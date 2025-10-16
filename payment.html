@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Payment - Fruitables</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container py-5">
+        <a href="cart.html" class="btn btn-link mb-4">&larr; Back to cart</a>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-4">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6 text-center">
+                            <img src="img/credit-card.jpg" alt="credit card" class="img-fluid" style="max-width: 320px;">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Secure Payment</h3>
+                            <p>Enter your payment details (simulation) and click Pay to complete the purchase.</p>
+                            <div class="mb-3">
+                                <input class="form-control" placeholder="Cardholder name">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" placeholder="Card number">
+                            </div>
+                            <div class="d-flex gap-2 mb-3">
+                                <input class="form-control" placeholder="MM/YY">
+                                <input class="form-control" placeholder="CVC">
+                            </div>
+                            <button id="pay-btn" class="btn btn-primary">Pay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4 text-center">
+          <div class="modal-body">
+            <h4 class="text-success">Payment Successful</h4>
+            <p>Your payment was processed successfully.</p>
+            <button id="success-ok" class="btn btn-success">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.getElementById('pay-btn').addEventListener('click', function(){
+            // Simulate payment processing delay
+            setTimeout(function(){
+                // mark items as paid
+                Cart.markAllPaid();
+                // show modal
+                var modalEl = new bootstrap.Modal(document.getElementById('successModal'));
+                modalEl.show();
+                document.getElementById('success-ok').addEventListener('click', function(){
+                    modalEl.hide();
+                    // redirect back to cart where paid items will be shown as disabled
+                    window.location.href = 'cart.html';
+                });
+            }, 800);
+        });
+    </script>
+</body>
+</html>
