@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://frutyshop.netlify.app/sitemap.xml
+
+# Crawl-delay can be added for polite crawling (seconds)
+# Crawl-delay: 10
